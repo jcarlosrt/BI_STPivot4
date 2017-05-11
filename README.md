@@ -19,3 +19,36 @@ Main Features:
 * Non MDX gran totals (min,max,avg and sum) per member, hierarchy or axis.
 * New user friendly Selector Area
 * and more…
+
+
+
+### Structure
+
+In this repository is the source code of STPivot. It is divided in two modules stpivot4 and stthemes-master. 
+
+The result of compiling this project is a pentaho plugin (in .zip, .tar.gz o .rar, as you prefer).
+
+The stpivot4 module depends on stthemes-master, that means that you have to compile properly the last one, for being available for the main module, stpivot4. 
+
+### Maven dependencies
+We use maven for dependency management, so yo have to install maven in your system in order to execute the command line instructions for playing with the stpivot4 plugin, compile changes, install a dependency, etc.
+
+The pom.xml files of each projects refers to the pentaho repository, that unfortunately is removing artifacts continuously and is changing too much lately, for this reason we try to keep update on those changes, but not always we achieve this, maybe some dependencies are referenced in our pom.xml files does not exists en pentaho repository, in that case you need to update what has changed in pentaho repo and made the changes to the affected pom.xml files. All this until there is an stable repository, 
+
+### Compile and Install
+Once you have maven installed go to the stthemes-master directory and execute the following commands:
+
+mvn compile
+mvn install
+
+Then, do the same in the stpivot4 directory 
+
+
+### Usage
+This steps generate the artifact needed by the plugin, and the plugin in a compressed file. If every has worked fine the plugin is in:
+
+${home}/.m2/repository/com/stratebi/stpivot4/stpivot4-pentaho/1.0-SNAPSHOT/stpivot4-pentaho-1.0-SNAPSHOT-plugin.zip
+
+The next step: decompress this file in: pentaho-solutions/system/
+
+Restart pentaho and in the "Home" page, click "Create New" -> "STPivot4"
