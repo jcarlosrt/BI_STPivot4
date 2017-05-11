@@ -10,6 +10,8 @@ package com.stratebi.stpivot4.analytics.ui;
 
 import static org.pivot4j.ui.CellTypes.VALUE;
 
+import java.util.List;
+
 import javax.el.MethodExpression;
 import javax.faces.component.UIParameter;
 import javax.faces.component.html.HtmlOutputLink;
@@ -74,13 +76,18 @@ public class PivotComponentBuilder extends org.pivot4j.analytics.ui.PivotCompone
 
 		if (scenarioEnabled && context.getCellType().equals(VALUE)
 				&& cell != null) {
+			
+			List<Integer> cellCoord = context.getCell().getCoordinateList();
+			
 			Inplace inplace = new Inplace();
-			inplace.setId("inplace-" + context.getCell().getOrdinal());
+			//inplace.setId("inplace-" + context.getCell().getOrdinal());
+			inplace.setId("inplace" + "-" + cellCoord.get(0) + "-" + cellCoord.get(1));			
 			inplace.setLabel(labelText);
 			inplace.setEditor(true);
 
 			InputText input = new InputText();
-			input.setId("input-" + context.getCell().getOrdinal());
+			//input.setId("input-" + context.getCell().getOrdinal());
+			input.setId("input" + "-" + cellCoord.get(0) + "-" + cellCoord.get(1));
 			input.setValue(value);
 			input.setConverter(new DoubleConverter());
 
@@ -96,8 +103,9 @@ public class PivotComponentBuilder extends org.pivot4j.analytics.ui.PivotCompone
 			behavior.setUpdate("@form");
 
 			UIParameter commandParam = new UIParameter();
-			commandParam.setName("cell");
-			commandParam.setValue(Integer.toString(cell.getOrdinal()));
+			commandParam.setName("cell");			
+			//commandParam.setValue(Integer.toString(cell.getOrdinal()));
+			commandParam.setValue(cellCoord);
 
 			inplace.addClientBehavior("save", behavior);
 			inplace.getChildren().add(commandParam);

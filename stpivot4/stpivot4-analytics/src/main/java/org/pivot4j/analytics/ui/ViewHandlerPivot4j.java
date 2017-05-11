@@ -641,8 +641,24 @@ public class ViewHandlerPivot4j implements QueryListener, ModelChangeListener {
 		}
 
 		if (requestParameters.containsKey("cell")) {
-			parameters.setCellOrdinal(Integer.parseInt(requestParameters
-					.get("cell")));
+			
+			//parameters.setCellOrdinal(Integer.parseInt(requestParameters.get("cell")));
+			
+			String data = requestParameters.get("cell");
+			int[] coordinates = new int[2];
+			coordinates[0] = 1;
+			coordinates[1] = 1;
+			if(data != null) {				
+				String[] array = data.split("-");
+				
+				try {
+					
+					coordinates[0] = Integer.parseInt(array[0]);
+					coordinates[1] = Integer.parseInt(array[1]);
+				} catch (Exception e) {}				
+			}
+			parameters.setCellCoordinate(coordinates);
+			
 		}
 
 		UICommand<?> command = renderer.getCommand(requestParameters
@@ -658,14 +674,24 @@ public class ViewHandlerPivot4j implements QueryListener, ModelChangeListener {
 		Map<String, String> parameters = context.getExternalContext()
 				.getRequestParameterMap();
 
-		int ordinal = Integer.parseInt(parameters.get("cell"));
+		String cellParam = parameters.get("cell");
+		String[] array = cellParam.split("-");
+		int x = Integer.parseInt(array[0]);
+		int y = Integer.parseInt(array[1]);		
+		
+		List<Integer> list = new ArrayList<Integer>();
+		list.add(x);
+		list.add(y);
+		
+		//int ordinal = Integer.parseInt(parameters.get("cell"));
 
-		String id = "input-" + ordinal;
+		String id = "input-" + cellParam;
 
 		UIInput input = (UIInput) component.findComponent(id);
 		Double value = (Double) input.getValue();
 
-		Cell cell = model.getCellSet().getCell(ordinal);
+		//Cell cell = model.getCellSet().getCell(ordinal);
+		Cell cell = model.getCellSet().getCell(list);
 
 		try {
 			cell.setValue(value, AllocationPolicy.EQUAL_ALLOCATION);
@@ -999,7 +1025,18 @@ public class ViewHandlerPivot4j implements QueryListener, ModelChangeListener {
 		@Override
 		public ResultSet execute(PivotModel model,
 				UICommandParameters parameters) {
-			Cell cell = model.getCellSet().getCell(parameters.getCellOrdinal());
+			//Cell cell = model.getCellSet().getCell(parameters.getCellOrdinal());
+			
+			int[] coord = parameters.getCellCoordinate();
+			List<Integer> list = new ArrayList<Integer>();
+			if(coord != null) {
+				for(int i = 0; i < coord.length; i++) {
+					list.add(coord[i]);
+				}
+
+			}
+			
+			Cell cell = model.getCellSet().getCell(list);
 
 			drillThroughHandler.update(cell);
 

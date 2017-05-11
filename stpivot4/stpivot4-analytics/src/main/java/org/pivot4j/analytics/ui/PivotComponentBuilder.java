@@ -457,7 +457,17 @@ public class PivotComponentBuilder extends
 
 				UIParameter cellParam = new UIParameter();
 				cellParam.setName("cell");
-				cellParam.setValue(parameters.getCellOrdinal());
+				
+				int[] params = parameters.getCellCoordinate();
+				
+				if(params != null) {
+					String toString = params[0] + "-" + params[1];					
+					cellParam.setValue(toString);	
+				} else {
+					cellParam.setValue(null);
+				}
+				
+				//cellParam.setValue(parameters.getCellOrdinal());
 				button.getChildren().add(cellParam);
 
 				column.getChildren().add(button);
@@ -494,13 +504,18 @@ public class PivotComponentBuilder extends
 
 		if (scenarioEnabled && context.getCellType().equals(VALUE)
 				&& cell != null) {
+			
+			List<Integer> cellCoord = context.getCell().getCoordinateList();
+			
 			Inplace inplace = new Inplace();
-			inplace.setId("inplace-" + context.getCell().getOrdinal());
+			//inplace.setId("inplace-" + context.getCell().getOrdinal());
+			inplace.setId("inplace" + "-" + cellCoord.get(0) + "-" + cellCoord.get(1));
 			inplace.setLabel(labelText);
 			inplace.setEditor(true);
 
 			InputText input = new InputText();
-			input.setId("input-" + context.getCell().getOrdinal());
+			//input.setId("input-" + context.getCell().getOrdinal());
+			input.setId("input" + "-" + cellCoord.get(0) + "-" + cellCoord.get(1));
 			input.setValue(value);
 			input.setConverter(new DoubleConverter());
 
@@ -517,7 +532,8 @@ public class PivotComponentBuilder extends
 
 			UIParameter commandParam = new UIParameter();
 			commandParam.setName("cell");
-			commandParam.setValue(Integer.toString(cell.getOrdinal()));
+			//commandParam.setValue(Integer.toString(cell.getOrdinal()));
+			commandParam.setValue(cellCoord);
 
 			inplace.addClientBehavior("save", behavior);
 			inplace.getChildren().add(commandParam);
