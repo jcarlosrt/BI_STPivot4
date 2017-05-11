@@ -20,15 +20,15 @@ Main Features:
 * New user friendly Selector Area
 * and more…
 
-
+## Instructions for Maven Beginners
 
 ### Structure
 
-In this repository is the source code of STPivot. It is divided in two modules stpivot4 and stthemes-master. 
+In this repository is the source code of STPivot. It is divided in two projects **stpivot4** and **stthemes-master**. 
 
 The result of compiling this project is a pentaho plugin (in .zip, .tar.gz o .rar, as you prefer).
 
-The stpivot4 module depends on stthemes-master, that means that you have to compile properly the last one, for being available for the main module, stpivot4. 
+The stpivot4 project depends on stthemes-master, that means that you have to compile properly the last one, for being available for the main project, **stpivot4**. 
 
 ### Maven dependencies
 We use maven for dependency management, so yo have to install maven in your system in order to execute the command line instructions for playing with the stpivot4 plugin, compile changes, install a dependency, etc.
