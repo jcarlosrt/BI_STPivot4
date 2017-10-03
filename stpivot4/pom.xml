@@ -76,11 +76,11 @@ It aims to leverage mature but now discontinued JPivot project's codebase to mak
 		<version.slf4j>1.7.7</version.slf4j>
 		<version.log4j>2.0.2</version.log4j>
 
-		<version.mondrian>3.12.0.1-196</version.mondrian>
+		<version.mondrian>3.14-SNAPSHOT</version.mondrian>
 		
 		<version.olap4j>1.2.0</version.olap4j>
 		
-		<version.pentaho>7.0-SNAPSHOT</version.pentaho>
+		<version.pentaho>7.1-SNAPSHOT</version.pentaho>
 
 		<version.pivot4j>1.0-SNAPSHOT</version.pivot4j>
 
@@ -427,6 +427,11 @@ It aims to leverage mature but now discontinued JPivot project's codebase to mak
 	</dependencies>
 
 	<repositories>
+		<repository>
+			<id>mvn-central</id>
+			<name>Maven Repository</name>
+			<url>https://mvnrepository.com/artifact/</url>
+		</repository>
 		<repository>
 			<id>pentaho</id>
 			<name>Pentaho Repository</name>

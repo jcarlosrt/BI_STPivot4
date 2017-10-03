@@ -358,6 +358,33 @@
 					<groupId>xerces</groupId>
 					<artifactId>xmlParserAPIs</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>barbecue</groupId>
+					<artifactId>barbecue</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.fife.ui</groupId>
+					<artifactId>rsyntaxtextarea</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>eigenbase</groupId>
+					<artifactId>eigenbase-xom</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>monetdb</groupId>
+					<artifactId>monetdb-jdbc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>pentaho</groupId>
+					<artifactId>pentaho-concurrent</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.pentaho</groupId>
+					<artifactId>pentaho-vfs</artifactId>
+				</exclusion>
+				
+				
+				
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -395,13 +422,33 @@
 		<repository>
 			<id>pentaho-third-party</id>
 			<name>Pentaho Third Party Repository</name>
-			<url>http://nexus.pentaho.org/content/repositories/proxy-public-6.1-release</url>
+			<url>http://nexus.pentaho.org/content/repositories/proxy-public-7.1-release</url>
 		</repository>
 		<repository>
 			<id>prime-repo</id>
 			<name>PrimeFaces Maven Repository</name>
 			<url>http://repository.primefaces.org</url>
 			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>mvn-central</id>
+			<name>Maven Repository</name>
+			<url>https://mvnrepository.com/artifact/</url>
+		</repository>
+		<repository>
+			<id>pentaho</id>
+			<name>Pentaho Repository</name>
+			<url>http://nexus.pentaho.org/content/repositories/</url>
+		</repository>
+		<repository>
+			<id>jboss-nexus</id>
+			<name>JBoss Nexus</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>repo-pentaho</id>
+			<name>Repo Pentaho</name>
+			<url>http://repo.pentaho.org/content/groups/omni/</url>
 		</repository>
 	</repositories>
 </project>
