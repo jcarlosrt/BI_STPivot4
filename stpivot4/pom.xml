@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -10,9 +11,11 @@
 	<artifactId>stpivot4</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>STPivot4</name>
-	<description>STPivot4 provides a common API for OLAP servers which can be used to build an analytical service frontend with pivot style GUI.
-
-It aims to leverage mature but now discontinued JPivot project's codebase to make it a general purpose OLAP API library which is independent of any particular GUI implementation.</description>
+	<description>
+		STPivot4 provides a common API for OLAP servers which can be used to build an analytical service frontend with pivot style
+		GUI. It aims to leverage mature but now discontinued JPivot project's codebase to make it a general purpose OLAP API library
+		which is independent of any particular GUI implementation.
+	</description>
 	<url>http://www.stratebi.com</url>
 	<packaging>pom</packaging>
 	<inceptionYear>2012</inceptionYear>
@@ -77,16 +80,16 @@ It aims to leverage mature but now discontinued JPivot project's codebase to mak
 		<version.log4j>2.0.2</version.log4j>
 
 		<version.mondrian>3.14-SNAPSHOT</version.mondrian>
-		
+
 		<version.olap4j>1.2.0</version.olap4j>
-		
+
 		<version.pentaho>7.1-SNAPSHOT</version.pentaho>
 
 		<version.pivot4j>1.0-SNAPSHOT</version.pivot4j>
 
 		<version.htmlcleaner>2.6.1</version.htmlcleaner>
 		<version.xhtmlrenderer>9.0.9</version.xhtmlrenderer>
-		
+
 		<version.commons.configuration>1.10</version.commons.configuration>
 		<version.commons.dbutils>1.5</version.commons.dbutils>
 		<version.commons.lang>2.6</version.commons.lang>
@@ -149,6 +152,7 @@ It aims to leverage mature but now discontinued JPivot project's codebase to mak
 			<timezone>+1</timezone>
 		</developer>
 	</developers>
+
 	<licenses>
 		<license>
 			<name>CPL</name>
@@ -156,12 +160,43 @@ It aims to leverage mature but now discontinued JPivot project's codebase to mak
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+
 	<organization>
 		<name>Stratebi</name>
 		<url>http://www.stratebi.com</url>
 	</organization>
 
 	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-provider-gitexe</artifactId>
+				<version>${version.extension.scm}</version>
+			</extension>
+			<extension>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-manager-plexus</artifactId>
+				<version>${version.extension.scm}</version>
+			</extension>
+		</extensions>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>lt.velykis.maven.skins</groupId>
+						<artifactId>reflow-velocity-tools</artifactId>
+						<version>${version.reflow.velocity}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.velocity</groupId>
+						<artifactId>velocity</artifactId>
+						<version>${version.velocity}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -230,38 +265,6 @@ It aims to leverage mature but now discontinued JPivot project's codebase to mak
 				</plugin>
 			</plugins>
 		</pluginManagement>
-
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<dependencies>
-					<dependency>
-						<groupId>lt.velykis.maven.skins</groupId>
-						<artifactId>reflow-velocity-tools</artifactId>
-						<version>${version.reflow.velocity}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.apache.velocity</groupId>
-						<artifactId>velocity</artifactId>
-						<version>${version.velocity}</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-		</plugins>
-
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.scm</groupId>
-				<artifactId>maven-scm-provider-gitexe</artifactId>
-				<version>${version.extension.scm}</version>
-			</extension>
-			<extension>
-				<groupId>org.apache.maven.scm</groupId>
-				<artifactId>maven-scm-manager-plexus</artifactId>
-				<version>${version.extension.scm}</version>
-			</extension>
-		</extensions>
 	</build>
 
 	<reporting>
@@ -395,7 +398,6 @@ It aims to leverage mature but now discontinued JPivot project's codebase to mak
 	</reporting>
 
 	<dependencies>
-	
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -428,25 +430,17 @@ It aims to leverage mature but now discontinued JPivot project's codebase to mak
 
 	<repositories>
 		<repository>
-			<id>mvn-central</id>
-			<name>Maven Repository</name>
-			<url>https://mvnrepository.com/artifact/</url>
+			<id>central</id>
+			<url>https://repo1.maven.org/maven2/</url>
 		</repository>
 		<repository>
 			<id>pentaho</id>
-			<name>Pentaho Repository</name>
-			<url>http://nexus.pentaho.org/content/repositories/omni</url>
+			<url>http://nexus.pentaho.org/content/repositories/omni/</url>
 		</repository>
-<!-- 		<repository> -->
-<!-- 			<id>jboss-nexus</id> -->
-<!-- 			<name>JBoss Nexus</name> -->
-<!-- 			<url>http://repository.jboss.org/nexus/content/groups/public/</url> -->
-<!-- 		</repository> -->
-<!-- 		<repository> -->
-<!-- 			<id>repo-pentaho</id> -->
-<!-- 			<name>Repo Pentaho</name> -->
-<!-- 			<url>http://repo.pentaho.org/content/groups/omni/</url> -->
-<!-- 		</repository> -->
-	</repositories>		
+		<repository>
+			<id>prime-repo</id>
+			<url>https://repository.primefaces.org/</url>
+		</repository>
+	</repositories>
 
 </project>
