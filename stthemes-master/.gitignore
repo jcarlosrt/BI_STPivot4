@@ -1,4 +1,1 @@
-/.project
-/.classpath
-/.settings/
-/stpivot4-theme/target/
+!doc/jquery-ui-*.custom.zip
