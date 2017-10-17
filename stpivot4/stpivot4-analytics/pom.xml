@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.stratebi.stpivot4</groupId>
@@ -10,7 +10,9 @@
 
 	<artifactId>stpivot4-analytics</artifactId>
 	<name>STPivot4 Analytics</name>
-	<description>STPivot4 Analytics is a sample application built with PrimeFaces to show basic usage of Pivot4J library.</description>
+	<description>
+		STPivot4 Analytics is a sample application built with PrimeFaces to show basic usage of Pivot4J library.
+	</description>
 	<packaging>war</packaging>
 
 	<properties>
@@ -21,9 +23,19 @@
 		<derby.home>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF</derby.home>
 		<skip.test>true</skip.test>
 		<additionalparam>-Xdoclint:none</additionalparam>
-
 	</properties>
+
 	<build>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<excludes>
+					<exclude>log4j-test.xml</exclude>
+					<exclude>mondrian.properties</exclude>
+				</excludes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -34,8 +46,7 @@
 						<phase>prepare-package</phase>
 						<configuration>
 							<target unless="maven.test.skip">
-								<unzip src="${project.basedir}/../src/test/data/derby-foodmart.zip"
-									dest="${derby.home}" overwrite="false" />
+								<unzip src="${project.basedir}/../src/test/data/derby-foodmart.zip" dest="${derby.home}" overwrite="false" />
 							</target>
 						</configuration>
 						<goals>
@@ -208,21 +219,12 @@
 				</executions>
 			</plugin>
 		</plugins>
-
-		<resources>
-			<resource>
-				<directory>${basedir}/src/main/resources</directory>
-				<excludes>
-					<exclude>log4j-test.xml</exclude>
-					<exclude>mondrian.properties</exclude>
-				</excludes>
-				<filtering>false</filtering>
-			</resource>
-		</resources>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
+				<!--
+				This plugin's configuration is used to store Eclipse m2e settings
+				only. It has no influence on the Maven build itself.
+				-->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -233,12 +235,8 @@
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>org.jacoco</groupId>
-										<artifactId>
-											jacoco-maven-plugin
-										</artifactId>
-										<versionRange>
-											[0.7.1.201405082137,)
-										</versionRange>
+										<artifactId>jacoco-maven-plugin</artifactId>
+										<versionRange>[0.7.1.201405082137,)</versionRange>
 										<goals>
 											<goal>prepare-agent</goal>
 										</goals>
@@ -313,10 +311,11 @@
 			<artifactId>commons-dbutils</artifactId>
 			<version>${version.commons.dbutils}</version>
 		</dependency>
-
-		<!-- <dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-email</artifactId> 
-			<version>${version.commons.email}</version> </dependency> -->
-
+		<!--<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>${version.commons.email}</version>
+		</dependency>-->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -418,6 +417,10 @@
 					<artifactId>log4j</artifactId>
 					<groupId>log4j</groupId>
 				</exclusion>
+				<exclusion>
+					<groupId>eigenbase</groupId>
+					<artifactId>eigenbase-xom</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -442,7 +445,6 @@
 			<version>${version.pentaho}</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.shrinkwrap.resolver</groupId>
 			<artifactId>shrinkwrap-resolver-depchain</artifactId>
@@ -521,45 +523,36 @@
 			<scope>test</scope>
 			<version>${version.jacoco}</version>
 		</dependency>
-
-
-
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore-nio -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore-nio</artifactId>
 			<version>4.4.5</version>
 		</dependency>
-
-
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.2</version>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 			<version>4.4.5</version>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpasyncclient -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpasyncclient</artifactId>
 			<version>4.1.2</version>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-
 	</dependencies>
 
 	<dependencyManagement>
@@ -588,15 +581,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<repositories>
-		<repository>
-			<id>prime-repo</id>
-			<name>PrimeFaces Maven Repository</name>
-			<url>http://repository.primefaces.org</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
-
 	<profiles>
 		<profile>
 			<id>mojarra</id>
@@ -608,7 +592,6 @@
 				</dependency>
 			</dependencies>
 		</profile>
-
 		<profile>
 			<id>myfaces</id>
 			<activation>
@@ -631,7 +614,6 @@
 				</dependency>
 			</dependencies>
 		</profile>
-
 		<profile>
 			<id>tomcat6</id>
 			<activation>
@@ -668,7 +650,6 @@
 				</dependency>
 			</dependencies>
 		</profile>
-
 		<profile>
 			<id>firefox</id>
 			<properties>
@@ -690,7 +671,6 @@
 				<skip.test>false</skip.test>
 			</properties>
 		</profile>
-
-
 	</profiles>
+
 </project>

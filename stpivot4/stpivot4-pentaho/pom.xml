@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.stratebi.stpivot4</groupId>
@@ -9,7 +10,9 @@
 
 	<artifactId>stpivot4-pentaho</artifactId>
 	<name>STPivot4 Pentaho</name>
-	<description>STPivot4 Pentatho is an OLAP analysis plugin for BI platform based on Pivot4J library.</description>
+	<description>
+		STPivot4 Pentatho is an OLAP analysis plugin for BI platform based on Pivot4J library.
+	</description>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -244,15 +247,9 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>
-											org.apache.portals.jetspeed-2
-										</groupId>
-										<artifactId>
-											jetspeed-unpack-maven-plugin
-										</artifactId>
-										<versionRange>
-											[2.2.2,)
-										</versionRange>
+										<groupId>org.apache.portals.jetspeed-2</groupId>
+										<artifactId>jetspeed-unpack-maven-plugin</artifactId>
+										<versionRange>[2.2.2,)</versionRange>
 										<goals>
 											<goal>unpack</goal>
 										</goals>
@@ -287,7 +284,6 @@
 			<artifactId>stpivot4-theme</artifactId>
 			<version>${version.stpivot4.themes}</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.apache.myfaces.core</groupId>
 			<artifactId>myfaces-api</artifactId>
@@ -358,6 +354,30 @@
 					<groupId>xerces</groupId>
 					<artifactId>xmlParserAPIs</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>barbecue</groupId>
+					<artifactId>barbecue</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.fife.ui</groupId>
+					<artifactId>rsyntaxtextarea</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>eigenbase</groupId>
+					<artifactId>eigenbase-xom</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>monetdb</groupId>
+					<artifactId>monetdb-jdbc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>pentaho</groupId>
+					<artifactId>pentaho-concurrent</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.pentaho</groupId>
+					<artifactId>pentaho-vfs</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -391,17 +411,4 @@
 		</dependency>
 	</dependencies>
 
-	<repositories>
-		<repository>
-			<id>pentaho-third-party</id>
-			<name>Pentaho Third Party Repository</name>
-			<url>http://nexus.pentaho.org/content/repositories/proxy-public-6.1-release</url>
-		</repository>
-		<repository>
-			<id>prime-repo</id>
-			<name>PrimeFaces Maven Repository</name>
-			<url>http://repository.primefaces.org</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
 </project>
